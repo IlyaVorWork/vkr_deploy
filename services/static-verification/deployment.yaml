@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: static-verification
-          image: ghcr.io/ilyavorwork/static-verification:latest
+          image: ghcr.io/ilyavorwork/static-verification:1.0.0
           imagePullPolicy: Always
           # Kafka-only consumer — HTTP-порт не нужен
           envFrom:

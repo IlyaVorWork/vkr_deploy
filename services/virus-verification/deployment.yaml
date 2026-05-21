@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: virus-verification
-          image: ghcr.io/ilyavorwork/virus-verification:latest
+          image: ghcr.io/ilyavorwork/virus-verification:1.0.0
           imagePullPolicy: Always
           # Kafka-only consumer — HTTP-порт не нужен
           envFrom:

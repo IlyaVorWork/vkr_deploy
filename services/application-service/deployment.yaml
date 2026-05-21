@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: application-service
-          image: ghcr.io/ilyavorwork/application-service:latest
+          image: ghcr.io/ilyavorwork/application-service:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080  # gRPC

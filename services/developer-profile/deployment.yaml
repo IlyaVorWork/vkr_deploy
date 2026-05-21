@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: developer-profile
-          image: ghcr.io/ilyavorwork/developer-profile:latest
+          image: ghcr.io/ilyavorwork/developer-profile:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
