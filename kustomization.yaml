@@ -30,3 +30,6 @@ resources:
   - services/developer-application/service.yaml
   - services/application-service/deployment.yaml
   - services/application-service/service.yaml
+
+  # Ingress
+  - ingress.yaml

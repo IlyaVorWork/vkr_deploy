@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: appdestr-ingress
+  name: appdistr-ingress
   namespace: ilay
   labels:
-    app: appdestr
+    app: appdistr
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     nginx.ingress.kubernetes.io/proxy-body-size: "200m"
@@ -14,16 +14,16 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - appdestr.sergeyhook.ru
-      secretName: appdestr-gateway-tls
+        - appdistr.sergeyhook.ru
+      secretName: appdistr-gateway-tls
   rules:
-    - host: appdestr.sergeyhook.ru
+    - host: appdistr.sergeyhook.ru
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: appdestr-svc
+                name: appdistr-svc
                 port:
                   number: 80
