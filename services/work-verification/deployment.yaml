@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: work-verification
-  namespace: appstore
+  namespace: ilay
 spec:
   replicas: 1
   selector:
