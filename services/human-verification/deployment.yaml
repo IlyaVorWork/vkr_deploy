@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: human-verification
-          image: ghcr.io/ilyavorwork/human-verification:1.0.0
+          image: ghcr.io/ilyavorwork/human-verification:1.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

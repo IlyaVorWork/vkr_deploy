@@ -35,8 +35,6 @@ metadata:
   namespace: ilay
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    nginx.ingress.kubernetes.io/rewrite-target: /sw/$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -47,22 +45,22 @@ spec:
     - host: appdistr.sergeyhook.ru
       http:
         paths:
-          - path: /human/sw(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /human/sw
+            pathType: Prefix
             backend:
               service:
                 name: human-verification
                 port:
                   number: 8080
-          - path: /devapp/sw(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /devapp/sw
+            pathType: Prefix
             backend:
               service:
                 name: developer-application
                 port:
                   number: 8080
-          - path: /devprofile/sw(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /devprofile/sw
+            pathType: Prefix
             backend:
               service:
                 name: developer-profile
