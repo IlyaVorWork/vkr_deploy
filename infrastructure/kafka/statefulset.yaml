@@ -5,7 +5,7 @@ metadata:
   namespace: ilay
 spec:
   serviceName: kafka
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: kafka
@@ -17,36 +17,32 @@ spec:
       containers:
         - name: kafka
           image: apache/kafka:latest
-          # KAFKA_NODE_ID и KAFKA_ADVERTISED_LISTENERS зависят от имени пода,
-          # поэтому вычисляются динамически из $HOSTNAME (kafka-0 → id=1, kafka-1 → id=2, ...)
-          command: ["/bin/bash", "-c"]
-          args:
-            - |
-              export KAFKA_NODE_ID=$((${HOSTNAME##*-} + 1))
-              export KAFKA_ADVERTISED_LISTENERS="PLAINTEXT://${HOSTNAME}.kafka-headless.ilay.svc.cluster.local:9092"
-              exec /etc/kafka/docker/run
           ports:
             - containerPort: 9092  # clients
             - containerPort: 9093  # controller
           env:
+            - name: KAFKA_NODE_ID
+              value: "1"
             - name: KAFKA_PROCESS_ROLES
               value: "broker,controller"
             - name: KAFKA_LISTENERS
               value: "PLAINTEXT://:9092,CONTROLLER://:9093"
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "PLAINTEXT://kafka:9092"
             - name: KAFKA_CONTROLLER_LISTENER_NAMES
               value: "CONTROLLER"
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
             - name: KAFKA_CONTROLLER_QUORUM_VOTERS
-              value: "1@kafka-0.kafka-headless.ilay.svc.cluster.local:9093,2@kafka-1.kafka-headless.ilay.svc.cluster.local:9093,3@kafka-2.kafka-headless.ilay.svc.cluster.local:9093"
+              value: "1@localhost:9093"
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
             - name: KAFKA_LOG_DIRS
               value: "/var/lib/kafka/data"
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
-              value: "3"
+              value: "1"
             - name: KAFKA_MIN_INSYNC_REPLICAS
-              value: "2"
+              value: "1"
           volumeMounts:
             - name: kafka-data
               mountPath: /var/lib/kafka/data
@@ -55,8 +51,8 @@ spec:
               memory: "512Mi"
               cpu: "250m"
             limits:
-              memory: "2Gi"
-              cpu: "1"
+              memory: "1Gi"
+              cpu: "500m"
           readinessProbe:
             tcpSocket:
               port: 9092
