@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: work-verification
+  namespace: appstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: work-verification
+  template:
+    metadata:
+      labels:
+        app: work-verification
+    spec:
+      containers:
+        - name: work-verification
+          image: ghcr.io/ilyavorwork/work-verification:latest
+          imagePullPolicy: Always
+          # Kafka-only consumer — HTTP-порт не нужен
+          # EMULATOR_HOST / EMULATOR_PORT берутся из common-config.
+          # Android-эмулятор должен быть доступен по этому адресу внутри кластера.
+          envFrom:
+            - configMapRef:
+                name: common-config
+          env:
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: access-key
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: secret-key
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

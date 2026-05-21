@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Namespace
+  - namespace.yaml
+
+  # Secrets & Config
+  - secrets.yaml
+  - configmap.yaml
+
+  # Infrastructure
+  - infrastructure/postgres/statefulset.yaml
+  - infrastructure/postgres/service.yaml
+  - infrastructure/kafka/statefulset.yaml
+  - infrastructure/kafka/service.yaml
+  - infrastructure/minio/statefulset.yaml
+  - infrastructure/minio/service.yaml
+  - infrastructure/clamd/deployment.yaml
+  - infrastructure/clamd/service.yaml
+
+  # Application services
+  - services/auto-verification/deployment.yaml
+  - services/auto-verification/service.yaml
+  - services/human-verification/deployment.yaml
+  - services/human-verification/service.yaml
+  - services/static-verification/deployment.yaml
+  - services/virus-verification/deployment.yaml
+  - services/work-verification/deployment.yaml
+  - services/developer-profile/deployment.yaml
+  - services/developer-profile/service.yaml
+  - services/developer-application/deployment.yaml
+  - services/developer-application/service.yaml
+  - services/application-service/deployment.yaml
+  - services/application-service/service.yaml

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clamd
+  namespace: appstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clamd
+  template:
+    metadata:
+      labels:
+        app: clamd
+    spec:
+      containers:
+        - name: clamd
+          image: clamav/clamav-debian:stable
+          ports:
+            - containerPort: 3310
+          env:
+            - name: CLAMD_STARTUP_TIMEOUT
+              value: "300"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+          readinessProbe:
+            exec:
+              command: ["bash", "-c", "echo PING | nc 127.0.0.1 3310 | grep -q PONG"]
+            initialDelaySeconds: 60  # ClamAV долго загружает базы
+            periodSeconds: 30
+            failureThreshold: 10
+          livenessProbe:
+            exec:
+              command: ["bash", "-c", "echo PING | nc 127.0.0.1 3310 | grep -q PONG"]
+            initialDelaySeconds: 120
+            periodSeconds: 30

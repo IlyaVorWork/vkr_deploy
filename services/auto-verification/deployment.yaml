@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auto-verification
+  namespace: appstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auto-verification
+  template:
+    metadata:
+      labels:
+        app: auto-verification
+    spec:
+      containers:
+        - name: auto-verification
+          image: ghcr.io/ilyavorwork/auto-verification:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080  # gRPC
+            - containerPort: 8081  # HTTP gateway
+          envFrom:
+            - configMapRef:
+                name: common-config
+          env:
+            - name: POSTGRES_DB
+              value: "auto_verification"
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: POSTGRES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: access-key
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: secret-key
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20

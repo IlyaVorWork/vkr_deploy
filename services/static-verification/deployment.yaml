@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-verification
+  namespace: appstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-verification
+  template:
+    metadata:
+      labels:
+        app: static-verification
+    spec:
+      containers:
+        - name: static-verification
+          image: ghcr.io/ilyavorwork/static-verification:latest
+          imagePullPolicy: Always
+          # Kafka-only consumer — HTTP-порт не нужен
+          envFrom:
+            - configMapRef:
+                name: common-config
+          env:
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: access-key
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: secret-key
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

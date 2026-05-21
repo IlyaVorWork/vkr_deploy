@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-service
+  namespace: appstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-service
+  template:
+    metadata:
+      labels:
+        app: application-service
+    spec:
+      containers:
+        - name: application-service
+          image: ghcr.io/ilyavorwork/application-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080  # gRPC
+            - containerPort: 8081  # HTTP gateway
+          envFrom:
+            - configMapRef:
+                name: common-config
+          env:
+            - name: POSTGRES_DB
+              value: "application"
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: POSTGRES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20

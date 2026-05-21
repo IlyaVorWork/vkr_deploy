@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: common-config
+  namespace: appstore
+data:
+  KAFKA_BROKER: "kafka:9092"
+  MINIO_ENDPOINT: "minio:9000"
+  MINIO_PUBLIC_ENDPOINT: "minio:9000"  # замени на внешний URL для presigned URLs
+  MINIO_BUCKET: "app-builds"
+  POSTGRES_ADDR: "postgres:5432"
+  CLAMD_HOST: "clamd"
+  CLAMD_PORT: "3310"
+  AUTO_VERIFICATION_ADDR: "auto-verification:8080"
+  APPLICATION_SERVICE_ADDR: "application-service:8080"
+  EMULATOR_HOST: "android-emulator"
+  EMULATOR_PORT: "5555"
