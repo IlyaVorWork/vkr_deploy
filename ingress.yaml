@@ -24,6 +24,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: appdistr-svc
+                name: krakend
                 port:
                   number: 80

@@ -31,5 +31,10 @@ resources:
   - services/application-service/deployment.yaml
   - services/application-service/service.yaml
 
+  # Gateway
+  - services/krakend/configmap.yaml
+  - services/krakend/deployment.yaml
+  - services/krakend/service.yaml
+
   # Ingress
   - ingress.yaml

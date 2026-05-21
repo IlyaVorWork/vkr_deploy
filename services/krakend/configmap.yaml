@@ -1,0 +1,183 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: krakend-config
+  namespace: ilay
+data:
+  krakend.json: |
+    {
+      "$schema": "https://www.krakend.io/schema/v3.json",
+      "version": 3,
+      "name": "ilay-gateway",
+      "timeout": "5000ms",
+      "endpoints": [
+        {
+          "endpoint": "/human/verifications",
+          "method": "GET",
+          "input_headers": ["*"],
+          "input_query_strings": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/verifications",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/human/verifications/{id}",
+          "method": "PATCH",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/verifications/{id}",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/human/verifications/{id}/link",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/verifications/{id}/link",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications",
+          "method": "GET",
+          "input_headers": ["*"],
+          "input_query_strings": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications",
+          "method": "POST",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications/{id}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications/{id}",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications/{id}",
+          "method": "PATCH",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications/{id}",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications/{id}/verify",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications/{id}/verify",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications/{id}/verify",
+          "method": "POST",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications/{id}/verify",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/applications/{id}/publish",
+          "method": "POST",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/applications/{id}/publish",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/profiles",
+          "method": "GET",
+          "input_headers": ["*"],
+          "input_query_strings": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/profiles",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/profiles",
+          "method": "POST",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/profiles",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/profiles/{id}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/profiles/{id}",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/profiles/{id}",
+          "method": "PUT",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/profiles/{id}",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/profiles/{id}",
+          "method": "DELETE",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/profiles/{id}",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        }
+      ]
+    }
