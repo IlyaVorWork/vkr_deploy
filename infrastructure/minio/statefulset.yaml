@@ -58,6 +58,7 @@ spec:
     - metadata:
         name: minio-data
       spec:
+        storageClassName: openebs-hostpath
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
