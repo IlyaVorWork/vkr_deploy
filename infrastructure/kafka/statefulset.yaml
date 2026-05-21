@@ -24,7 +24,7 @@ spec:
             - |
               export KAFKA_NODE_ID=$((${HOSTNAME##*-} + 1))
               export KAFKA_ADVERTISED_LISTENERS="PLAINTEXT://${HOSTNAME}.kafka-headless.ilay.svc.cluster.local:9092"
-              exec /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties
+              exec /etc/kafka/docker/run
           ports:
             - containerPort: 9092  # clients
             - containerPort: 9093  # controller
