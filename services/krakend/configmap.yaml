@@ -178,6 +178,72 @@ data:
             "host": ["http://developer-profile:8080"],
             "encoding": "no-op"
           }]
+        },
+        {
+          "endpoint": "/human/sw/",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/human/sw/{file}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/{file}",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/sw/",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devapp/sw/{file}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/{file}",
+            "host": ["http://developer-application:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/sw/",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
+          "endpoint": "/devprofile/sw/{file}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/sw/{file}",
+            "host": ["http://developer-profile:8080"],
+            "encoding": "no-op"
+          }]
         }
       ]
     }
