@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: android-emulator
+  namespace: ilay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: android-emulator
+  template:
+    metadata:
+      labels:
+        app: android-emulator
+    spec:
+      containers:
+        - name: android-emulator
+          image: budtmo/docker-android:emulator_9.0
+          ports:
+            - containerPort: 5554
+            - containerPort: 5555  # ADB
+          env:
+            - name: EMULATOR_DEVICE
+              value: "Samsung Galaxy S10"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: kvm
+              mountPath: /dev/kvm
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+      volumes:
+        - name: kvm
+          hostPath:
+            path: /dev/kvm
