@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: android-emulator
-          image: budtmo/docker-android-x86-9.0:latest
+          image: budtmo/docker-android:emulator_9.0
           ports:
             - containerPort: 5554  # ADB console
             - containerPort: 5555  # ADB
