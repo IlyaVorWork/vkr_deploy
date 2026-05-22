@@ -66,3 +66,10 @@ spec:
                 name: developer-profile
                 port:
                   number: 8080
+          - path: /emulator
+            pathType: Prefix
+            backend:
+              service:
+                name: android-emulator
+                port:
+                  number: 6080
