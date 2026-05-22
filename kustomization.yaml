@@ -40,3 +40,5 @@ resources:
 
   # Ingress
   - ingress.yaml
+  - swagger-ingress.yaml
+  - emulator-ingress.yaml
