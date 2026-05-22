@@ -34,3 +34,10 @@ spec:
                 name: android-emulator
                 port:
                   number: 6080
+          - path: /websockify
+            pathType: Prefix
+            backend:
+              service:
+                name: android-emulator
+                port:
+                  number: 6080
