@@ -42,28 +42,6 @@ spec:
                 name: developer-profile
                 port:
                   number: 8080
-          # Emulator static assets and WebSocket
-          - path: /app
-            pathType: Prefix
-            backend:
-              service:
-                name: android-emulator
-                port:
-                  number: 6080
-          - path: /websockify
-            pathType: Prefix
-            backend:
-              service:
-                name: android-emulator
-                port:
-                  number: 6080
-          - path: /core
-            pathType: Prefix
-            backend:
-              service:
-                name: android-emulator
-                port:
-                  number: 6080
           # API Gateway (catch-all)
           - path: /
             pathType: Prefix

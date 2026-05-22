@@ -15,8 +15,7 @@ resources:
   - infrastructure/minio/service.yaml
   - infrastructure/clamd/deployment.yaml
   - infrastructure/clamd/service.yaml
-  - infrastructure/android-emulator/deployment.yaml
-  - infrastructure/android-emulator/service.yaml
+
 
   # Application services
   - services/auto-verification/deployment.yaml
@@ -40,4 +39,3 @@ resources:
 
   # Ingress
   - ingress.yaml
-  - emulator-ingress.yaml
