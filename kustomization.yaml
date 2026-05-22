@@ -40,3 +40,4 @@ resources:
 
   # Ingress
   - ingress.yaml
+  - emulator-ingress.yaml
