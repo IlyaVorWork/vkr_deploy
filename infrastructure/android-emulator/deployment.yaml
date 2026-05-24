@@ -17,7 +17,7 @@ spec:
         kubernetes.io/hostname: worker02
       containers:
         - name: android-emulator
-          image: budtmo/docker-android:emulator_30.0
+          image: budtmo/docker-android:emulator_11.0
           ports:
             - containerPort: 5554
             - containerPort: 5555  # ADB
