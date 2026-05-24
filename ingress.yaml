@@ -42,6 +42,14 @@ spec:
                 name: developer-profile
                 port:
                   number: 8080
+          # MinIO UI
+          - path: /minio
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  number: 9001
           # API Gateway (catch-all)
           - path: /
             pathType: Prefix
