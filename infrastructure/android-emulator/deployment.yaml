@@ -13,6 +13,8 @@ spec:
       labels:
         app: android-emulator
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker02
       containers:
         - name: android-emulator
           image: budtmo/docker-android:emulator_9.0
