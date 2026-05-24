@@ -13,6 +13,8 @@ spec:
       labels:
         app: static-verification
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: static-verification
           image: ghcr.io/ilyavorwork/static-verification:1.0.0

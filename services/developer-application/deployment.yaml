@@ -13,6 +13,8 @@ spec:
       labels:
         app: developer-application
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: developer-application
           image: ghcr.io/ilyavorwork/developer-application:1.0.3

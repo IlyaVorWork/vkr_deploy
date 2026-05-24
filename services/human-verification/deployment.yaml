@@ -13,6 +13,8 @@ spec:
       labels:
         app: human-verification
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: human-verification
           image: ghcr.io/ilyavorwork/human-verification:1.0.3

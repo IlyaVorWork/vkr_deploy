@@ -13,6 +13,8 @@ spec:
       labels:
         app: krakend
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: krakend
           image: devopsfaith/krakend:2

@@ -13,6 +13,8 @@ spec:
       labels:
         app: virus-verification
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: virus-verification
           image: ghcr.io/ilyavorwork/virus-verification:1.0.0

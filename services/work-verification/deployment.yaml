@@ -13,6 +13,8 @@ spec:
       labels:
         app: work-verification
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker01
       containers:
         - name: work-verification
           image: ghcr.io/ilyavorwork/work-verification:1.0.0
