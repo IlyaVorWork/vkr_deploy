@@ -41,3 +41,4 @@ resources:
 
   # Ingress
   - ingress.yaml
+  - minio-ingress.yaml
