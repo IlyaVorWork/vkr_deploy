@@ -33,7 +33,7 @@ spec:
                   name: minio-secret
                   key: secret-key
             - name: MINIO_BROWSER_REDIRECT_URL
-              value: "https://minio.appdistr.sergeyhook.ru"
+              value: "https://minio.appdistr.ilyavorwork.ru"
           volumeMounts:
             - name: minio-data
               mountPath: /data

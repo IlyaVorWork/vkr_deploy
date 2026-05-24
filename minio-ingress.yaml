@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - minio.appdistr.sergeyhook.ru
+        - minio.appdistr.ilyavorwork.ru
       secretName: minio-tls
   rules:
-    - host: minio.appdistr.sergeyhook.ru
+    - host: minio.appdistr.ilyavorwork.ru
       http:
         paths:
           - path: /
