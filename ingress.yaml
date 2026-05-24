@@ -14,10 +14,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - appdistr.ilyavorwork.ru
+        - appdistr.sergeyhook.ru
       secretName: appdistr-gateway-tls
   rules:
-    - host: appdistr.ilyavorwork.ru
+    - host: appdistr.sergeyhook.ru
       http:
         paths:
           # Swagger
