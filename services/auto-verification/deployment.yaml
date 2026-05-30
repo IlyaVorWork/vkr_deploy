@@ -17,7 +17,7 @@ spec:
         kubernetes.io/hostname: worker01
       containers:
         - name: auto-verification
-          image: ghcr.io/ilyavorwork/auto-verification:1.0.3
+          image: ghcr.io/ilyavorwork/auto-verification:1.0.4
           imagePullPolicy: Always
           ports:
             - containerPort: 8080  # gRPC
