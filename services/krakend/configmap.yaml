@@ -24,6 +24,17 @@ data:
           }]
         },
         {
+          "endpoint": "/human/verifications/by-correlation/{correlationId}",
+          "method": "GET",
+          "input_headers": ["*"],
+          "output_encoding": "no-op",
+          "backend": [{
+            "url_pattern": "/verifications/by-correlation/{correlationId}",
+            "host": ["http://human-verification:8080"],
+            "encoding": "no-op"
+          }]
+        },
+        {
           "endpoint": "/human/verifications/{id}",
           "method": "PATCH",
           "input_headers": ["*"],
