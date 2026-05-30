@@ -17,7 +17,7 @@ spec:
         kubernetes.io/hostname: worker01
       containers:
         - name: developer-application
-          image: ghcr.io/ilyavorwork/developer-application:1.0.8
+          image: ghcr.io/ilyavorwork/developer-application:1.0.9
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
