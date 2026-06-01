@@ -23,7 +23,7 @@ spec:
             - containerPort: 5555  # ADB
           env:
             - name: EMULATOR_DEVICE
-              value: "Nexus 5"
+              value: "Samsung Galaxy S10"
             - name: EMULATOR_TIMEOUT
               value: "300"
           securityContext:
