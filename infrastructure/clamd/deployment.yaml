@@ -21,6 +21,8 @@ spec:
           env:
             - name: CLAMD_STARTUP_TIMEOUT
               value: "300"
+            - name: CLAMD_CONF_StreamMaxLength
+              value: "500M"
           resources:
             requests:
               memory: "512Mi"
