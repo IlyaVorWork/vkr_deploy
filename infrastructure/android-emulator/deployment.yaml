@@ -23,7 +23,9 @@ spec:
             - containerPort: 5555  # ADB
           env:
             - name: EMULATOR_DEVICE
-              value: "Samsung Galaxy S10"
+              value: "Pixel 2"
+            - name: EMULATOR_TIMEOUT
+              value: "300"
           securityContext:
             privileged: true
           volumeMounts:
