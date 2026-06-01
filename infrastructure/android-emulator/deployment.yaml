@@ -23,7 +23,7 @@ spec:
             - containerPort: 5555  # ADB
           env:
             - name: EMULATOR_DEVICE
-              value: "Pixel 2"
+              value: "Nexus 5"
             - name: EMULATOR_TIMEOUT
               value: "300"
           securityContext:
