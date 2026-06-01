@@ -73,6 +73,7 @@ data:
           "method": "POST",
           "input_headers": ["*"],
           "output_encoding": "no-op",
+          "timeout": "120s",
           "backend": [{
             "url_pattern": "/applications",
             "host": ["http://developer-application:8080"],

@@ -7,7 +7,7 @@ metadata:
     app: appdistr
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    nginx.ingress.kubernetes.io/proxy-body-size: "200m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
     nginx.ingress.kubernetes.io/use-gzip: "true"
     nginx.ingress.kubernetes.io/gzip-types: "text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript image/svg+xml application/vnd.android.package-archive"
 spec:
